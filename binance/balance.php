@@ -1,25 +1,44 @@
 <?php
+/*
+    Clase para conectarce a Binance Rest API
+    Documentación: https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md
+    Creado por: Gerson Morales - moralesgersonpa@gmail.com
+*/
+
+
 include('../class/API.php');
-ini_set('display_errors', 'Off');
-
-$url_time='https://api.binance.com/api/v1/time';
-$clase_time = new APIJSON($url_time);
-$call_time= $clase_time->call(array());
-$search_time= json_decode($call_time);
-$time = $search_time->serverTime;
 
 
-$apikey='#####';
-$apisecret='####';
+/*
+	Obtener la hora actual del servidor
+	
+	Response:
+	{
+  		"serverTime": 1499827319559
+	}
+*/
+$ServerTimeUrl='https://api.binance.com/api/v1/time'; 
+$ClassServerTime = new APIREST($ServerTimeUrl);
+$CallServerTime = $ClassServerTime->call(array());
+$DecodeCallTime= json_decode($CallServerTime);
+$Time = $DecodeCallTime->serverTime;
 
-$timestamp = 'timestamp='.$time;
-$signature = hash_hmac('SHA256',$timestamp ,$apisecret);
+/*
+	Generar firma con algoritmo SHA256
+*/
+$ApiKey='########';
+$ApiSecret='########';
+$Timestamp = 'timestamp='.$Time;
+$Signature = hash_hmac('SHA256',$Timestamp ,$ApiSecret);
 
-$url='https://api.binance.com/api/v3/account?timestamp='.$time.'&signature='.$signature;
 
-$clase = new APIJSON($url);
-$call= $clase->call(array('X-MBX-APIKEY:'.$apikey));
-$search_bittrex= json_decode($call);
-
-echo "$call";
+/*
+	@BalanceUrl   :
+	@ClassBalance :
+	@CallBalance  :
+*/
+$BalanceUrl='https://api.binance.com/api/v3/account?timestamp='.$Time.'&signature='.$Signature;
+$ClassBalance = new APIREST($BalanceUrl);
+$CallBalance= $ClassBalance->call(array('X-MBX-APIKEY:'.$ApiKey));
+echo "$CallBalance";
 ?>

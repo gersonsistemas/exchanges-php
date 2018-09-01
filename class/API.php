@@ -3,7 +3,7 @@
     Clase para conectarce a API Rest
     Creado por: Gerson Morales - moralesgersonpa@gmail.com
 */
-class APIJSON
+class APIREST
 {
     private $url;
 
