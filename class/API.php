@@ -1,17 +1,39 @@
 <?php 
 /*
-    Clase para conectarce a API Rest
-    Creado por: Gerson Morales - moralesgersonpa@gmail.com
-*/
+ * ============================================================
+ * @package exchanges-php
+ * @link https://github.com/moralesgersonpa/exchanges-php
+ * ============================================================
+ * @author Gerson Morales
+ * @website https://moralesgerson.com.ve/
+ * @email moralesgersonpa@gmail.com
+ * ============================================================
+ * APIREST request class
+ *
+ * Example Usage:
+ * require 'API.php';
+ * $api = new APIREST($url);
+ * $call = $api->call(array()); | array contains the headers of the request
+ */
 class APIREST
 {
     private $url;
 
+    /**
+     * Constructor for the class,
+     * you must send the url to initialize the class
+     *
+     * @return $url
+     */
     public function __construct($url)
     {
         $this->url = $url;
     }
 
+    /**
+     * @param $httpheader array of headers
+     * @return response
+     */
     public function call($httpheader)
     {
         try
