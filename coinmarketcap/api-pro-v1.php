@@ -1,5 +1,18 @@
 <?php
 
+/*
+ * ============================================================
+ * @package exchanges-php
+ * @link https://github.com/moralesgersonpa/exchanges-php
+ * ============================================================
+ * @author Gerson Morales
+ * @website https://moralesgerson.com.ve/
+ * @email moralesgersonpa@gmail.com
+ * ============================================================
+ * Connect CoinMarketCap API Pro
+ * Documentation https://pro.coinmarketcap.com/api/v1
+ */
+
 include('../class/API.php');
 
 /**
